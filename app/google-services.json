@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "73755281784",
+    "project_id": "project-cinema-bee4b",
+    "storage_bucket": "project-cinema-bee4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73755281784:android:c91541f8628f0f0ff0608d",
+        "android_client_info": {
+          "package_name": "com.project.cinema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73755281784-lb12e5hk1bnuafbd5r8gktli2sp1m04u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF3j_R06iyQmTYcQAMLbIcHVaZmiyf7S8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73755281784-lb12e5hk1bnuafbd5r8gktli2sp1m04u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
