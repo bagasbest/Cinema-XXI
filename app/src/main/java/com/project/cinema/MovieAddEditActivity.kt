@@ -21,6 +21,7 @@ class MovieAddEditActivity : AppCompatActivity() {
     private var binding: ActivityMovieAddBinding? = null
     private val REQUEST_IMAGE_FROM_GALLERY = 1001
     private var image: String ?= null
+    private var model: MovieModel? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,25 @@ class MovieAddEditActivity : AppCompatActivity() {
             binding?.addOrEdit?.text = "Tambahkan Upcoming Movie"
         } else {
             binding?.addOrEdit?.text = "Edit Movie"
+            model = intent.getParcelableExtra(EXTRA_DATA)
+
+            image = model?.image
+            Glide.with(this)
+                .load(image)
+                .into(binding!!.roundedImageView)
+
+            binding?.title?.setText(model?.title)
+            binding?.description?.setText(model?.description)
+            binding?.rating?.setText(model?.rating)
+            binding?.theater?.setText(model?.theater)
+            binding?.duration?.setText(model?.duration)
+            binding?.genre?.setText(model?.genre)
+            binding?.producer?.setText(model?.producer)
+            binding?.director?.setText(model?.director)
+            binding?.writer?.setText(model?.writer)
+            binding?.cast?.setText(model?.cast)
+            binding?.distributor?.setText(model?.distributor)
+            binding?.website?.setText(model?.website)
         }
 
         binding?.backButton?.setOnClickListener {
@@ -47,12 +67,12 @@ class MovieAddEditActivity : AppCompatActivity() {
         }
 
         binding?.saveBtn?.setOnClickListener {
-            formValidation()
+            formValidation(option)
         }
 
     }
 
-    private fun formValidation() {
+    private fun formValidation(option: String?) {
         val title = binding?.title?.text.toString().trim()
         val description = binding?.description?.text.toString().trim()
         val rating = binding?.rating?.text.toString().trim()
@@ -110,38 +130,73 @@ class MovieAddEditActivity : AppCompatActivity() {
 
                 binding?.progresBar?.visibility = View.VISIBLE
 
-                val uid = System.currentTimeMillis().toString()
-                val data = mapOf(
-                    "title" to title,
-                    "description" to description,
-                    "rating" to rating,
-                    "theater" to theater,
-                    "duration" to duration,
-                    "genre" to genre,
-                    "producer" to produser,
-                    "director" to director,
-                    "writer" to writer,
-                    "cast" to cast,
-                    "distributor" to distributor,
-                    "website" to website,
-                    "image" to image,
-                    "uid" to uid,
-                )
+                if(option == "add") {
+                    val uid = System.currentTimeMillis().toString()
+                    val data = mapOf(
+                        "title" to title,
+                        "description" to description,
+                        "rating" to rating,
+                        "theater" to theater,
+                        "duration" to duration,
+                        "genre" to genre,
+                        "producer" to produser,
+                        "director" to director,
+                        "writer" to writer,
+                        "cast" to cast,
+                        "distributor" to distributor,
+                        "website" to website,
+                        "image" to image,
+                        "uid" to uid,
+                    )
 
-                FirebaseFirestore
-                    .getInstance()
-                    .collection("movie")
-                    .document(uid)
-                    .set(data)
-                    .addOnCompleteListener {
-                        if(it.isSuccessful) {
-                            binding?.progresBar?.visibility = View.GONE
-                            showSuccessDialog("Sukses Menabah Movie", "Movie ini akan di tambahkan ke daftar upcoming")
-                        } else {
-                            binding?.progresBar?.visibility = View.GONE
-                            showFailureDialog("Gagal Menabah Movie", "Ups, gagal mengunggah movie, silahkan periksa koneksi internet anda")
+                    FirebaseFirestore
+                        .getInstance()
+                        .collection("movie")
+                        .document(uid)
+                        .set(data)
+                        .addOnCompleteListener {
+                            if(it.isSuccessful) {
+                                binding?.progresBar?.visibility = View.GONE
+                                showSuccessDialog("Sukses Menabah Movie", "Movie ini akan di tambahkan ke daftar upcoming")
+                            } else {
+                                binding?.progresBar?.visibility = View.GONE
+                                showFailureDialog("Gagal Menabah Movie", "Ups, gagal mengunggah movie, silahkan periksa koneksi internet anda")
+                            }
                         }
-                    }
+
+                } else {
+                    val data = mapOf(
+                        "title" to title,
+                        "description" to description,
+                        "rating" to rating,
+                        "theater" to theater,
+                        "duration" to duration,
+                        "genre" to genre,
+                        "producer" to produser,
+                        "director" to director,
+                        "writer" to writer,
+                        "cast" to cast,
+                        "distributor" to distributor,
+                        "website" to website,
+                        "image" to image,
+                    )
+
+                    FirebaseFirestore
+                        .getInstance()
+                        .collection("movie")
+                        .document(model?.uid!!)
+                        .update(data)
+                        .addOnCompleteListener {
+                            if(it.isSuccessful) {
+                                binding?.progresBar?.visibility = View.GONE
+                                showSuccessDialog("Sukses Memperbarui Movie", "Movie ini akan di perbarui ke daftar upcoming")
+                            } else {
+                                binding?.progresBar?.visibility = View.GONE
+                                showFailureDialog("Gagal Memperbarui Movie", "Ups, gagal mengunggah movie, silahkan periksa koneksi internet anda")
+                            }
+                        }
+
+                }
 
             }
         }
@@ -233,5 +288,6 @@ class MovieAddEditActivity : AppCompatActivity() {
 
     companion object {
         const val OPTION = "addEdit"
+        const val EXTRA_DATA = "data"
     }
 }
