@@ -96,7 +96,7 @@
                     android:id="@+id/rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Rating Movie"
+                    android:hint="Rating Movie (R13+, SU, 17+, dll)"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -255,6 +255,7 @@
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/roundedImageView"
                     android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
                     android:layout_height="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

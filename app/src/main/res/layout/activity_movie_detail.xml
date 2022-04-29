@@ -92,7 +92,7 @@
 
                 <ImageView
                     android:layout_width="150dp"
-                    android:layout_height="240dp"
+                    android:layout_height="220dp"
                     android:id="@+id/image"
                     android:contentDescription="@string/image"
                     android:layout_marginTop="16sp"
@@ -103,8 +103,8 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16sp"
                     android:src="@drawable/ic_baseline_av_timer_24"
                     app:layout_constraintStart_toEndOf="@+id/image"
@@ -117,9 +117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 Minutes"
-                    android:layout_marginStart="16sp"
+                    android:layout_marginStart="5dp"
                     android:textColor="@color/teal_700"
-                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -131,8 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Theater: "
-                    android:textSize="16sp"
-                    android:layout_marginTop="16sp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/teal_700"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -181,12 +179,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sinopsis"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
                     <com.codesgood.views.JustifiedTextView
                         android:id="@+id/description"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -201,9 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/producer"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -218,9 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/director"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -235,9 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/writer"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp" />
 
 
                     <TextView
@@ -253,9 +253,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/cast"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp"/>
 
 
                     <TextView
@@ -271,9 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/distributor"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -288,9 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/website"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="5dp"/>
 
 
                 </LinearLayout>
@@ -308,10 +302,20 @@
 
     <ImageView
         android:id="@+id/edit"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16sp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_baseline_edit_24"
+        android:layout_marginEnd="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16sp"
+        android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.project.cinema.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,11 +28,19 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(MovieAddEditActivity.OPTION ,"add")
             startActivity(intent)
         }
+
+        binding?.refreshBtn?.setOnClickListener {
+            initRecyclerView()
+            initViewModel()
+            Toast.makeText(this, "Refresh movie...", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.stackFromEnd = true
+        val layoutManager =  StaggeredGridLayoutManager(
+            2,
+            StaggeredGridLayoutManager.VERTICAL
+        )
         binding?.rvMovie?.layoutManager = layoutManager
         adapter = MovieAdapter()
         binding?.rvMovie?.adapter = adapter
